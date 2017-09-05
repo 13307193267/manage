@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="manage.mcj.dao.BalanceMapper" >
+  <resultMap id="BaseResultMap" type="manage.mcj.entity.Balance" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="userid" property="userid" jdbcType="INTEGER" />
+    <result column="yusuan" property="yusuan" jdbcType="DOUBLE" />
+    <result column="balance" property="balance" jdbcType="DOUBLE" />
+    <result column="zhichu" property="zhichu" jdbcType="DOUBLE" />
+    <result column="shouru" property="shouru" jdbcType="DOUBLE" />
+    <result column="zongzhichu" property="zongzhichu" jdbcType="DOUBLE" />
+    <result column="zongshouru" property="zongshouru" jdbcType="DOUBLE" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="updateTime" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, userid, yusuan, balance, zhichu, shouru, zongzhichu, zongshouru, createTime, 
+    updateTime, remarks
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from balance
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from balance
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="manage.mcj.entity.Balance" >
+    insert into balance (id, userid, yusuan, 
+      balance, zhichu, shouru, 
+      zongzhichu, zongshouru, createTime, 
+      updateTime, remarks)
+    values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{yusuan,jdbcType=DOUBLE}, 
+      #{balance,jdbcType=DOUBLE}, #{zhichu,jdbcType=DOUBLE}, #{shouru,jdbcType=DOUBLE}, 
+      #{zongzhichu,jdbcType=DOUBLE}, #{zongshouru,jdbcType=DOUBLE}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{updatetime,jdbcType=TIMESTAMP}, #{remarks,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="manage.mcj.entity.Balance" >
+    insert into balance
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="yusuan != null" >
+        yusuan,
+      </if>
+      <if test="balance != null" >
+        balance,
+      </if>
+      <if test="zhichu != null" >
+        zhichu,
+      </if>
+      <if test="shouru != null" >
+        shouru,
+      </if>
+      <if test="zongzhichu != null" >
+        zongzhichu,
+      </if>
+      <if test="zongshouru != null" >
+        zongshouru,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="updatetime != null" >
+        updateTime,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="yusuan != null" >
+        #{yusuan,jdbcType=DOUBLE},
+      </if>
+      <if test="balance != null" >
+        #{balance,jdbcType=DOUBLE},
+      </if>
+      <if test="zhichu != null" >
+        #{zhichu,jdbcType=DOUBLE},
+      </if>
+      <if test="shouru != null" >
+        #{shouru,jdbcType=DOUBLE},
+      </if>
+      <if test="zongzhichu != null" >
+        #{zongzhichu,jdbcType=DOUBLE},
+      </if>
+      <if test="zongshouru != null" >
+        #{zongshouru,jdbcType=DOUBLE},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="manage.mcj.entity.Balance" >
+    update balance
+    <set >
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="yusuan != null" >
+        yusuan = #{yusuan,jdbcType=DOUBLE},
+      </if>
+      <if test="balance != null" >
+        balance = #{balance,jdbcType=DOUBLE},
+      </if>
+      <if test="zhichu != null" >
+        zhichu = #{zhichu,jdbcType=DOUBLE},
+      </if>
+      <if test="shouru != null" >
+        shouru = #{shouru,jdbcType=DOUBLE},
+      </if>
+      <if test="zongzhichu != null" >
+        zongzhichu = #{zongzhichu,jdbcType=DOUBLE},
+      </if>
+      <if test="zongshouru != null" >
+        zongshouru = #{zongshouru,jdbcType=DOUBLE},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="manage.mcj.entity.Balance" >
+    update balance
+    set userid = #{userid,jdbcType=INTEGER},
+      yusuan = #{yusuan,jdbcType=DOUBLE},
+      balance = #{balance,jdbcType=DOUBLE},
+      zhichu = #{zhichu,jdbcType=DOUBLE},
+      shouru = #{shouru,jdbcType=DOUBLE},
+      zongzhichu = #{zongzhichu,jdbcType=DOUBLE},
+      zongshouru = #{zongshouru,jdbcType=DOUBLE},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      remarks = #{remarks,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

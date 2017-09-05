@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="manage.mcj.dao.SysUserMapper">
+	<resultMap id="BaseResultMap" type="manage.mcj.entity.SysUser">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="userName" property="username" jdbcType="VARCHAR" />
+		<result column="account" property="account" jdbcType="VARCHAR" />
+		<result column="password" property="password" jdbcType="VARCHAR" />
+		<result column="email" property="email" jdbcType="VARCHAR" />
+		<result column="phone" property="phone" jdbcType="INTEGER" />
+		<result column="photo" property="photo" jdbcType="VARCHAR" />
+		<result column="address" property="address" jdbcType="VARCHAR" />
+		<result column="creatTime" property="creattime" jdbcType="TIMESTAMP" />
+		<result column="updateTime" property="updatetime" jdbcType="TIMESTAMP" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<association property="user" column="userid" select="getUser"></association>
+
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, userName, account, password, email, phone, photo,
+		address, creatTime,
+		updateTime,
+		remark
+	</sql>
+	<select id="all" resultMap="BaseResultMap" parameterType="manage.mcj.entity.SysUser">
+	<!-- select c.roleName from sysrole c where c.id=(select b.roleId from sysusersrole 
+		b where b.userId=(SELECT a.id from sysuser a where a.id=1)) -->
+		 select * from sysuser
+		<where>
+			<if test="id != null">
+				and id = #{id,jdbcType=INTEGER}
+			</if>
+			<if test="username != null">
+				and userName = #{username,jdbcType=VARCHAR}
+			</if>
+			<if test="account != null">
+				and account = #{account,jdbcType=VARCHAR}
+			</if>
+			<if test="password != null">
+				and password = #{password,jdbcType=VARCHAR}
+			</if>
+			<if test="email != null">
+				and email = #{email,jdbcType=VARCHAR}
+			</if>
+			<if test="phone != null">
+				and phone = #{phone,jdbcType=INTEGER}
+			</if>
+			<if test="photo != null">
+				and photo = #{photo,jdbcType=VARCHAR}
+			</if>
+			<if test="address != null">
+				and address = #{address,jdbcType=VARCHAR}
+			</if>
+			<if test="creattime != null">
+				and creatTime = #{creattime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="updatetime != null">
+				and updateTime = #{updatetime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="remark != null">
+				and remark = #{remark,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</select>
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from sysuser
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		sysuser
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="manage.mcj.entity.SysUser">
+		insert into sysuser (id,
+		userName, account,
+		password, email, phone,
+		photo, address, creatTime,
+		updateTime, remark)
+		values (#{id,jdbcType=INTEGER},
+		#{username,jdbcType=VARCHAR},
+		#{account,jdbcType=VARCHAR},
+		#{password,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
+		#{phone,jdbcType=INTEGER},
+		#{photo,jdbcType=VARCHAR},
+		#{address,jdbcType=VARCHAR},
+		#{creattime,jdbcType=TIMESTAMP},
+		#{updatetime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="manage.mcj.entity.SysUser">
+		insert into sysuser
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="username != null">
+				userName,
+			</if>
+			<if test="account != null">
+				account,
+			</if>
+			<if test="password != null">
+				password,
+			</if>
+			<if test="email != null">
+				email,
+			</if>
+			<if test="phone != null">
+				phone,
+			</if>
+			<if test="photo != null">
+				photo,
+			</if>
+			<if test="address != null">
+				address,
+			</if>
+			<if test="creattime != null">
+				creatTime,
+			</if>
+			<if test="updatetime != null">
+				updateTime,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="username != null">
+				#{username,jdbcType=VARCHAR},
+			</if>
+			<if test="account != null">
+				#{account,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				#{password,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				#{email,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				#{phone,jdbcType=INTEGER},
+			</if>
+			<if test="photo != null">
+				#{photo,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				#{address,jdbcType=VARCHAR},
+			</if>
+			<if test="creattime != null">
+				#{creattime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updatetime != null">
+				#{updatetime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="manage.mcj.entity.SysUser">
+		update sysuser
+		<set>
+			<if test="username != null">
+				userName = #{username,jdbcType=VARCHAR},
+			</if>
+			<if test="account != null">
+				account = #{account,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				password = #{password,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				email = #{email,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				phone = #{phone,jdbcType=INTEGER},
+			</if>
+			<if test="photo != null">
+				photo = #{photo,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				address = #{address,jdbcType=VARCHAR},
+			</if>
+			<if test="creattime != null">
+				creatTime = #{creattime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updatetime != null">
+				updateTime = #{updatetime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="manage.mcj.entity.SysUser">
+		update sysuser
+		set
+		userName = #{username,jdbcType=VARCHAR},
+		account =
+		#{account,jdbcType=VARCHAR},
+		password = #{password,jdbcType=VARCHAR},
+		email = #{email,jdbcType=VARCHAR},
+		phone = #{phone,jdbcType=INTEGER},
+		photo = #{photo,jdbcType=VARCHAR},
+		address =
+		#{address,jdbcType=VARCHAR},
+		creatTime =
+		#{creattime,jdbcType=TIMESTAMP},
+		updateTime =
+		#{updatetime,jdbcType=TIMESTAMP},
+		remark = #{remark,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+</mapper>
