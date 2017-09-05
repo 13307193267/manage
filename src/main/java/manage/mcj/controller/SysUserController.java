@@ -16,7 +16,7 @@ public class SysUserController {
 
 	@Autowired private SysUserService sUserService;
 	
-	@RequestMapping(value="/all",method=RequestMethod.POST)
+	@RequestMapping(value="/user",method=RequestMethod.POST)
 	public @ResponseBody List<SysUser> select(SysUser user){
 		List<SysUser> list =  sUserService.SelectUser(user);
 		return list;
