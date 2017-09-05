@@ -23,6 +23,16 @@ public class SysUserController {
 		
 	}
 	
+//	
+//	@RequestMapping(value="/user",method=RequestMethod.POST)
+//	public @ResponseBody ModelAndView select(SysUser user){
+//		ModelAndView model = new ModelAndView();
+//		List<SysUser> list =  sUserService.SelectUser(user);
+//		model.addObject(list);
+//		return model;
+//		
+//	}
+	
 	@RequestMapping(value="/add",method=RequestMethod.POST)
 	public @ResponseBody String insert(SysUser user){
 		SysUser sUser = new SysUser();
