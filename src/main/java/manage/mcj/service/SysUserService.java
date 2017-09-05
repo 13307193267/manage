@@ -7,4 +7,6 @@ import manage.mcj.entity.SysUser;
 public interface SysUserService {
 
 	List<SysUser> SelectUser(SysUser user);
+	
+	int insert(SysUser user);
 }

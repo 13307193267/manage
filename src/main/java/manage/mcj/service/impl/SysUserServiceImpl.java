@@ -20,4 +20,10 @@ public class SysUserServiceImpl implements SysUserService{
 		return sUser.all(user);
 	}
 
+	@Override
+	public int insert(SysUser user) {
+		// TODO Auto-generated method stub
+		return sUser.add(user);
+	}
+
 }

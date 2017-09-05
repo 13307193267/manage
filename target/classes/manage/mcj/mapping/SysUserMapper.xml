@@ -75,21 +75,21 @@
 		sysuser
 		where id = #{id,jdbcType=INTEGER}
 	</delete>
-	<insert id="insert" parameterType="manage.mcj.entity.SysUser">
-		insert into sysuser (id,
-		userName, account,
+	<insert id="add" parameterType="manage.mcj.entity.SysUser">
+		insert into sysuser (
+		userName,
+		account,
 		password, email, phone,
-		photo, address, creatTime,
-		updateTime, remark)
-		values (#{id,jdbcType=INTEGER},
+		photo, address,
+		remark)
+		values (
 		#{username,jdbcType=VARCHAR},
 		#{account,jdbcType=VARCHAR},
 		#{password,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
 		#{phone,jdbcType=INTEGER},
 		#{photo,jdbcType=VARCHAR},
 		#{address,jdbcType=VARCHAR},
-		#{creattime,jdbcType=TIMESTAMP},
-		#{updatetime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})
+		#{remark,jdbcType=VARCHAR})
 	</insert>
 	<insert id="insertSelective" parameterType="manage.mcj.entity.SysUser">
 		insert into sysuser

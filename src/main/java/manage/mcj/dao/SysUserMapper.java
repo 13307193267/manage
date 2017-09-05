@@ -10,7 +10,7 @@ public interface SysUserMapper {
 	
     int deleteByPrimaryKey(Integer id);
 
-    int insert(SysUser record);
+    int add(SysUser user);
 
     int insertSelective(SysUser record);
 

@@ -22,4 +22,19 @@ public class SysUserController {
 		return list;
 		
 	}
+	
+	@RequestMapping(value="/add",method=RequestMethod.POST)
+	public @ResponseBody String insert(SysUser user){
+		SysUser sUser = new SysUser();
+		sUser.setAccount(user.getAccount());
+		List<SysUser> list =  sUserService.SelectUser(sUser);
+		if(list.size() == 0 ){
+			sUserService.insert(user);
+			return "添加成功";
+		}else{
+			return "已经存在此用户了";
+		}
+		 
+		
+	}
 }
